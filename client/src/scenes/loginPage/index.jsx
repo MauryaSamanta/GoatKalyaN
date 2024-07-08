@@ -25,7 +25,7 @@ const LoginPage = () => {
         backgroundColor={theme.palette.background.alt}
       >
         <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          Welcome to GoatKalyan
+          Welcome to GoatKalyan-Animal Welfare Assessment of Goat in Semi-Intensive System
         </Typography>
         <Form />
       </Box>

@@ -37,7 +37,7 @@ const UserWidget = ({ userId }) => {
 
     // Add title and subtitle
     doc.setFontSize(20);
-    doc.text('REPORT', 14, 20);
+    doc.text('REPORT', 85, 20);
     doc.setFontSize(16);
     doc.text('Animal Welfare Assessment of Goat in Semi-Intensive System ', 14, 30);
     doc.text('Using GoatKalyan Indicators',14,36);
@@ -48,7 +48,8 @@ const UserWidget = ({ userId }) => {
     doc.text(`Name of the Farmer: ${selectedFarm.name_farmer}`, 14, 56);
     doc.text(`Location of the Farm: ${selectedFarm.location_map_farm}`, 14, 62);
     doc.text(`Coordinates: ${selectedFarm.location_farm}`, 14, 68);
-    doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 74);
+    doc.text(`Recorded On:${new Date(selectedFarm.created_at).toLocaleString()}`, 14, 74);
+    
     var rank="";
     var total=selectedFarm.housing_total+selectedFarm.fodder_total+selectedFarm.behaviour_total+selectedFarm.health_total;
     if(total>80)
@@ -59,21 +60,22 @@ const UserWidget = ({ userId }) => {
       rank="Fair/Average"
     if(total<40)
       rank="Poor"
-    doc.text(`Ranking of the Goat Farm: ${rank}`, 14, 80);
+    doc.text(`Ranking of the Goat Farm: ${rank}`, 14, 86);
     {selectedFarm.housing_total<13?
-    (doc.text(`Note: The animal housing are to be improved`, 14, 86)):(<></>)}
+    (doc.text(`Note: The animal housing and other facilities are to be improved `, 14, 92)):(<></>)}
     {selectedFarm.fodder_total<10?
-      (doc.text(`Note: Feed & Fodders has to be improved`, 14, 86)):(<></>)}
+      (doc.text(`Note: Feed & Fodders including Grazing Area has to be improved`, 14, 98)):(<></>)}
       {selectedFarm.behaviour_total<13?
-        (doc.text(`Note: The animal behaviour has to be improved`, 14, 86)):(<></>)}
+        (doc.text(`Note: The animal behaviour is not upto the mark`, 14, 104)):(<></>)}
         {selectedFarm.health_total<21?
-          (doc.text(`Note: The animal health has to be improved`, 14, 86)):(<></>)}
+          (doc.text(`Note: The animal health condition has to be improved`, 14, 110)):(<></>)}
       
     // Add disclaimer and signature
     doc.setFontSize(10);
-    doc.text('Disclaimer: The report is indicative only and not to be considered as legal document', 14, 100);
-    doc.text('Signature', 14, 106);
-
+    doc.text('Disclaimer: The report is indicative only and not to be considered as legal document or certficate', 14, 116);
+    doc.text('from any regulatory authority',14,122);
+    doc.text('Signature', 14, 142);
+    doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 152);
     // Save the PDF
     doc.save('goat-farm-report.pdf');
   };
