@@ -115,7 +115,7 @@ const MyPost = ({ userId, setaddFarm }) => {
 
   const alert=[
     { label: 'a) If >70% animal shown alertness', value: '2' },
-    { label: 'b) If >70% animal shown alertness', value: '1' },
+    { label: 'b) If <70% animal shown alertness', value: '1' },
   ]
 
   const lively=[
