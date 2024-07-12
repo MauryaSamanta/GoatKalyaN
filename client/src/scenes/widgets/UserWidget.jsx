@@ -66,9 +66,9 @@ const UserWidget = ({ userId }) => {
     (doc.text(`Note: The animal housing and other facilities are to be improved `, 14, 98)):(<></>)}
     {selectedFarm.fodder_total<10?
       (doc.text(`Note: Feed & Fodders including Grazing Area has to be improved`, 14, 104)):(<></>)}
-      {selectedFarm.behaviour_total<13?
+      {selectedFarm.behaviour_total<7?
         (doc.text(`Note: The animal behaviour is not upto the mark`, 14, 110)):(<></>)}
-        {selectedFarm.health_total<21?
+        {selectedFarm.health_total<20?
           (doc.text(`Note: The animal health condition has to be improved`, 14, 116)):(<></>)}
       
     // Add disclaimer and signature
