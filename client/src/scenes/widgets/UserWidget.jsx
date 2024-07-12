@@ -83,17 +83,14 @@ const UserWidget = ({ userId }) => {
   const getFarms = async () => {
    // setIsLoading(true);
     console.log("Fetching...");
-      const toastId = toast.loading("Retrieving farms...");
+      
     const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${userId}/farms`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
     
     const data = await response.json();
-    if(data)
-      toast.update(toastId, { render: "Farms Displayed", type: "success", isLoading: false, autoClose: 5000 });
-    else
-    toast.update(toastId, { render: "No farms uploaded", type: "error", isLoading: false, autoClose: 5000 });
+    
 
     setIsLoading(false);
     setFarms(data);
