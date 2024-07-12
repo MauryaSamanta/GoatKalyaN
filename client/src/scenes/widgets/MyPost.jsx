@@ -203,13 +203,37 @@ const MyPost = ({ userId, setaddFarm }) => {
   const validationSchema = Yup.object({
     name_farm: Yup.string().required('Required'),
     name_farmer: Yup.string().required('Required'),
-    address_farm: Yup.string().required('Required'),
+    location_map_farm: Yup.string().required('Required'),
     farm_male: Yup.number().required('Required').min(0, 'Cannot be negative'),
     farm_female: Yup.number().required('Required').min(0, 'Cannot be negative'),
     farm_young: Yup.number().required('Required').min(0, 'Cannot be negative'),
-    animal_housing: Yup.string().required('Required'),
+    floor: Yup.string().required('Required'),
+    roof: Yup.string().required('Required'),
+    bedding: Yup.string().required('Required'),
+    thermal: Yup.string().required('Required'),
+    watering: Yup.string().required('Required'),
+    grazing:Yup.string().required('Required'), 
+    supple:Yup.string().required('Required'),
+    forage:Yup.string().required('Required'),
+    water:Yup.string().required('Required'),
+    relations:Yup.string().required('Required'),
+    oblivion:Yup.string().required('Required'),
+    aggres:Yup.string().required('Required'),
+    alert:Yup.string().required('Required'),
+    lively:Yup.string().required('Required'),
+    suffer:Yup.string().required('Required'),
+    condition:Yup.string().required('Required'),
+    hock:Yup.string().required('Required'),
+    lame:Yup.string().required('Required'),
+    adscesses:Yup.string().required('Required'),
+    hair:Yup.string().required('Required'),
+    faecal:Yup.string().required('Required'),
+    nasal:Yup.string().required('Required'),
+    ocular:Yup.string().required('Required'),
+    overgrown:Yup.string().required('Required'),
+    vaccine:Yup.string().required('Required'),
+    deworm:Yup.string().required('Required')
   });
-
   // Define the onSubmit function
   const onSubmit = async (values, { setSubmitting }) => {
    // console.log("Hello");
@@ -244,6 +268,7 @@ const MyPost = ({ userId, setaddFarm }) => {
       </Typography>
       <Formik
         initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         {({ isSubmitting, values, handleChange, setFieldValue, value }) => (
