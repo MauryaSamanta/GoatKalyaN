@@ -61,21 +61,22 @@ const UserWidget = ({ userId }) => {
     if(total<40)
       rank="Poor"
     doc.text(`Ranking of the Goat Farm: ${rank}`, 14, 86);
+    doc.text(`[Full Score=100; Excellent: >80, Good: 60-80, Fair/Average: 40-59, Poor: <40]`,14,92);
     {selectedFarm.housing_total<13?
-    (doc.text(`Note: The animal housing and other facilities are to be improved `, 14, 92)):(<></>)}
+    (doc.text(`Note: The animal housing and other facilities are to be improved `, 14, 98)):(<></>)}
     {selectedFarm.fodder_total<10?
-      (doc.text(`Note: Feed & Fodders including Grazing Area has to be improved`, 14, 98)):(<></>)}
+      (doc.text(`Note: Feed & Fodders including Grazing Area has to be improved`, 14, 104)):(<></>)}
       {selectedFarm.behaviour_total<13?
-        (doc.text(`Note: The animal behaviour is not upto the mark`, 14, 104)):(<></>)}
+        (doc.text(`Note: The animal behaviour is not upto the mark`, 14, 110)):(<></>)}
         {selectedFarm.health_total<21?
-          (doc.text(`Note: The animal health condition has to be improved`, 14, 110)):(<></>)}
+          (doc.text(`Note: The animal health condition has to be improved`, 14, 116)):(<></>)}
       
     // Add disclaimer and signature
     doc.setFontSize(10);
-    doc.text('Disclaimer: The report is indicative only and not to be considered as legal document or certficate', 14, 116);
-    doc.text('from any regulatory authority',14,122);
-    doc.text('Signature', 14, 142);
-    doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 152);
+    doc.text('Disclaimer: The report is indicative only and not to be considered as legal document or certficate', 14, 122);
+    doc.text('from any regulatory authority',14,128);
+    doc.text('Signature', 14, 148);
+    doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 158);
     // Save the PDF
     doc.save('goat-farm-report.pdf');
   };
