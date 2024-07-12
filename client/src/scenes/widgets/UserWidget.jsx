@@ -161,7 +161,7 @@ const UserWidget = ({ userId }) => {
   return (
     //Farms for User {userId}
     <Container>
-      <ToastContainer />
+{/*       <ToastContainer /> */}
     {selectedFarm ? (
       <Paper id="pdf-content">
         <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', mt: 2 }}>
