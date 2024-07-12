@@ -257,3 +257,29 @@ WHERE farms.farm_id = $1;`;
       res.json(error);
     }
   }
+
+  export const deleteFarm=async(req,res)=>{
+    const farmid=req.params.farmid;
+    const client=await pool.connect();
+    try {
+      await client.query('BEGIN');
+      
+      // Delete related records from housing, behaviour, health, fodder, and images tables
+      await client.query('DELETE FROM housing WHERE farm_id = $1', [farmid]);
+      await client.query('DELETE FROM behaviour WHERE farm_id = $1', [farmid]);
+      await client.query('DELETE FROM health WHERE farm_id = $1', [farmid]);
+      await client.query('DELETE FROM fodder WHERE farm_id = $1', [farmid]);
+      //await client.query('DELETE FROM images WHERE farm_id = $1', [farmid]);
+      
+      // Delete the farm record
+      await client.query('DELETE FROM farms WHERE farm_id = $1', [farmid]);
+      
+      await client.query('COMMIT');
+      console.log(`Farm with ID ${farmid} and all related records have been deleted.`);
+      res.json("OK");
+    } catch (error) {
+      await client.query('ROLLBACK');
+      
+      console.error('Error deleting farm:', error);
+    } 
+  }

@@ -1,6 +1,6 @@
 import express from "express";
 import { addfarm } from "../controllers/farm.js";
-import {getUserFarms, getUserFarms50, getFarmDetails} from "../controllers/farm.js";
+import {getUserFarms, getUserFarms50, getFarmDetails, deleteFarm} from "../controllers/farm.js";
 import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
@@ -10,6 +10,7 @@ const router = express.Router();
  router.get("/:userid/farms", getUserFarms);
  router.get("/:userid/farm50", getUserFarms50);
  router.get("/:farmid", getFarmDetails);
+ router.post("/:farmid",deleteFarm);
 // /* UPDATE */
 // router.patch("/:id/like", likePost);
 

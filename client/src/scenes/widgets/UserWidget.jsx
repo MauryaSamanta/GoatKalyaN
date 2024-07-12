@@ -61,28 +61,30 @@ const UserWidget = ({ userId }) => {
     if(total<40)
       rank="Poor"
     doc.text(`Ranking of the Goat Farm: ${rank}`, 14, 86);
+    doc.text(`[Full Score=100; Excellent: >80, Good: 60-80, Fair/Average: 40-59, Poor: <40]`,14,92);
     {selectedFarm.housing_total<13?
-    (doc.text(`Note: The animal housing and other facilities are to be improved `, 14, 92)):(<></>)}
+    (doc.text(`Note: The animal housing and other facilities are to be improved `, 14, 98)):(<></>)}
     {selectedFarm.fodder_total<10?
-      (doc.text(`Note: Feed & Fodders including Grazing Area has to be improved`, 14, 98)):(<></>)}
+      (doc.text(`Note: Feed & Fodders including Grazing Area has to be improved`, 14, 104)):(<></>)}
       {selectedFarm.behaviour_total<13?
-        (doc.text(`Note: The animal behaviour is not upto the mark`, 14, 104)):(<></>)}
+        (doc.text(`Note: The animal behaviour is not upto the mark`, 14, 110)):(<></>)}
         {selectedFarm.health_total<21?
-          (doc.text(`Note: The animal health condition has to be improved`, 14, 110)):(<></>)}
+          (doc.text(`Note: The animal health condition has to be improved`, 14, 116)):(<></>)}
       
     // Add disclaimer and signature
     doc.setFontSize(10);
-    doc.text('Disclaimer: The report is indicative only and not to be considered as legal document or certficate', 14, 116);
-    doc.text('from any regulatory authority',14,122);
-    doc.text('Signature', 14, 142);
-    doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 152);
+    doc.text('Disclaimer: The report is indicative only and not to be considered as legal document or certficate', 14, 122);
+    doc.text('from any regulatory authority',14,128);
+    doc.text('Signature', 14, 148);
+    doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 158);
     // Save the PDF
     doc.save('goat-farm-report.pdf');
   };
   const getFarms = async () => {
     setIsLoading(true);
+    console.log("Fetching...");
       const toastId = toast.loading("Retrieving farms...");
-    const response = await fetch(`http://localhost:3001/farms/${userId}/farms`, {
+    const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${userId}/farms`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -92,6 +94,8 @@ const UserWidget = ({ userId }) => {
       toast.update(toastId, { render: "Farms Displayed", type: "success", isLoading: false, autoClose: 5000 });
     else
     toast.update(toastId, { render: "No farms uploaded", type: "error", isLoading: false, autoClose: 5000 });
+
+    setIsLoading(false);
     setFarms(data);
   };
 
@@ -103,7 +107,7 @@ const UserWidget = ({ userId }) => {
     setIsLoading(true);
     const toastId = toast.loading("Fetching Farm Details...");
     try {
-      const response = await fetch(`http://localhost:3001/farms/${farmid}`,{
+      const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${farmid}`,{
         method: "GET",
         headers: { "Content-Type": "application/json" }
       });
@@ -115,10 +119,31 @@ const UserWidget = ({ userId }) => {
       else
       toast.update(toastId, { render: "No farms uploaded", type: "error", isLoading: false, autoClose: 5000 });
       //console.log(selectedFarm);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching farm details:', error);
     }
   };
+
+  const deleteFarm=async(farmid)=>{
+    const isConfirmed = window.confirm('Are you sure you want to delete this farm? This action cannot be undone.');
+    if(isConfirmed)
+    {setIsLoading(true);
+    const toastId = toast.loading("Deleting Farm...");
+    try {
+      const response=await fetch(`https://goatkalyan-backend.onrender.com/farms/${farmid}`,{
+        method:"POST"
+      });
+      const data=await response.json();
+      getFarms();
+      if(data)
+        toast.update(toastId, { render: "Farm Deleted Successfully.", type: "success", isLoading: false, autoClose: 5000 });
+      else
+      toast.update(toastId, { render: "Farm not deleted. Please try again later.", type: "error", isLoading: false, autoClose: 5000 });
+    } catch (error) {
+      console.error('Wrong', error);
+    }}
+  }
   if (!farms) {
     return null;
   }
@@ -353,13 +378,23 @@ const UserWidget = ({ userId }) => {
             <TableCell>{farm.farm_young}</TableCell>
             <TableCell>{farm.location_map_farm}</TableCell>
             <TableCell>{new Date(farm.created_at).toLocaleString()}</TableCell>
-            <TableCell><Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => fetchFarmDetails(farm.farm_id)}
-                >
-                  Get Details
-                </Button></TableCell>
+            <TableCell><Box sx={{ display: 'flex', gap: 1 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => fetchFarmDetails(farm.farm_id)}
+            >
+              Get Details
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => deleteFarm(farm.farm_id)} // Define deleteFarm function
+            >
+              Delete Farm
+            </Button>
+          </Box>
+                </TableCell>
             {/* Add more cells as needed */}
           </TableRow>
         ))}
