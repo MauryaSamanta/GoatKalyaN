@@ -6,7 +6,7 @@ import multerS3 from 'multer-s3';
 import path from 'path';
 import {S3Client, PutObjectCommand} from '@aws-sdk/client-s3';
 
-const GOOGLE_KEY="AIzaSyCsBaW9eWvszvR3xRKrVqjWtSJ3PY7rUq0";
+
 const s3=new S3Client({});
 
 /*ADDING A FARM FROM USER*/ 
@@ -23,7 +23,7 @@ export const addfarm = async (req, res) => {
         farm_male,
         farm_female,
         farm_young,
-
+        latLng
       } = req.body;
 
       //Animal Housing
@@ -37,14 +37,8 @@ export const addfarm = async (req, res) => {
 
       }=req.body;
       var total=parseInt(floor)+parseInt(roof)+parseInt(bedding)+parseInt(thermal)+parseInt(watering);
-      const geoResponse = await axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${GOOGLE_KEY}`, {});
-
-      const { lat, lng } = geoResponse.data.location;
-
-      const latLng = `${lat},${lng}`;
-    //   const salt = await bcrypt.genSalt();
-    //   const passwordHash = await bcrypt.hash(password, salt);
-     //console.log(latLng);
+      
+     console.log(latLng);
       const client = await pool.connect();
         const query = 'INSERT INTO farms (name_farm, name_farmer, location_farm, farm_male, farm_female, farm_young, user_id, created_at, location_map_farm) VALUES ($1, $2, $3,$4,$5,$6,$7,NOW(),$8) RETURNING *';
         const values = [

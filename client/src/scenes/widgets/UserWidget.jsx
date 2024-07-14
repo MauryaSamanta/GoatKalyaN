@@ -39,8 +39,8 @@ const UserWidget = ({ userId }) => {
     doc.setFontSize(20);
     doc.text('REPORT', 85, 20);
     doc.setFontSize(16);
-    doc.text('Animal Welfare Assessment of Goat in Semi-Intensive System ', 14, 30);
-    doc.text('Using GoatKalyan Indicators',14,36);
+    doc.text('Animal Welfare Assessment of Goat Farm in Semi-Intensive System of ', 14, 30);
+    doc.text('Management Using GoatKalyan Indicators',50,36);
 
     // Add farm details
     doc.setFontSize(12);
@@ -77,25 +77,27 @@ const UserWidget = ({ userId }) => {
     doc.text('from any regulatory authority',14,128);
     doc.text('Signature', 14, 148);
     doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 158);
+    doc.text(`Developed in Department of Livestock Production Management`,14,164);
+    doc.text(`West Bengal University of Animal and Fishery Sciences, Kolkata`,14,170);
     // Save the PDF
     doc.save('goat-farm-report.pdf');
   };
   const getFarms = async () => {
-    setIsLoading(true);
-    console.log("Fetching...");
-      const toastId = toast.loading("Retrieving farms...");
+    // setIsLoading(true);
+    // console.log("Fetching...");
+    //   const toastId = toast.loading("Retrieving farms...");
     const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${userId}/farms`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
     
     const data = await response.json();
-    if(data)
-      toast.update(toastId, { render: "Farms Displayed", type: "success", isLoading: false, autoClose: 5000 });
-    else
-    toast.update(toastId, { render: "No farms uploaded", type: "error", isLoading: false, autoClose: 5000 });
+    // if(data)
+    //   toast.update(toastId, { render: "Farms Displayed", type: "success", isLoading: false, autoClose: 5000 });
+    // else
+    // toast.update(toastId, { render: "No farms uploaded", type: "error", isLoading: false, autoClose: 5000 });
 
-    setIsLoading(false);
+    //setIsLoading(false);
     setFarms(data);
   };
 

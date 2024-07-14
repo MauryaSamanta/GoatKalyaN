@@ -200,6 +200,12 @@ const Form = () => {
             >
               {isLogin ? "LOGIN" : "REGISTER"}
             </Button>
+            <Typography>
+            Developed in Department of Livestock Production Management
+            </Typography>
+            <Typography>
+            West Bengal University of Animal and Fishery Sciences, Kolkata
+            </Typography>
             <Typography
               onClick={() => {
                 setPageType(isLogin ? "register" : "login");
@@ -213,7 +219,7 @@ const Form = () => {
                   color: palette.primary.light,
                 },
               }}
-            >
+            > 
               {isLogin
                 ? "Don't have an account? Sign Up here."
                 : "Already have an account? Login here."}

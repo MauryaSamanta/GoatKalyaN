@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Checkbox, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material';
@@ -6,6 +7,21 @@ import { Box, Button, Checkbox, FormControlLabel, Grid, Paper, TextField, Typogr
 const MyPost = ({ userId, setaddFarm }) => {
   // Define the initial values for the form
    //console.log(userId);
+   let loc="";
+   const getCoordinates=()=>{
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success);
+    } else {
+      console.log("Geolocation not supported");
+    }
+   }
+   function success(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    loc=`${latitude}, ${longitude}`;
+
+    console.log(loc);
+  }
   const initialValues = {
     
     name_farm: '',
@@ -232,12 +248,17 @@ const MyPost = ({ userId, setaddFarm }) => {
     ocular:Yup.string().required('Required'),
     overgrown:Yup.string().required('Required'),
     vaccine:Yup.string().required('Required'),
-    deworm:Yup.string().required('Required')
+    deworm:Yup.string().required('Required'),
+    
   });
   // Define the onSubmit function
+  useEffect(() => {
+    getCoordinates();
+  }, []); 
   const onSubmit = async (values, { setSubmitting }) => {
    // console.log("Hello");
    values.userid=userId;
+   values.latLng=loc;
   //  const formData = new FormData();
   //  formData.append("userid", userId);
   //  for (let value in values) {
