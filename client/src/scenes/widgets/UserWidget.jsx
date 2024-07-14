@@ -66,9 +66,9 @@ const UserWidget = ({ userId }) => {
     (doc.text(`Note: The animal housing and other facilities are to be improved `, 14, 98)):(<></>)}
     {selectedFarm.fodder_total<10?
       (doc.text(`Note: Feed & Fodders including Grazing Area has to be improved`, 14, 104)):(<></>)}
-      {selectedFarm.behaviour_total<13?
+      {selectedFarm.behaviour_total<7?
         (doc.text(`Note: The animal behaviour is not upto the mark`, 14, 110)):(<></>)}
-        {selectedFarm.health_total<21?
+        {selectedFarm.health_total<20?
           (doc.text(`Note: The animal health condition has to be improved`, 14, 116)):(<></>)}
       
     // Add disclaimer and signature
@@ -83,19 +83,29 @@ const UserWidget = ({ userId }) => {
     doc.save('goat-farm-report.pdf');
   };
   const getFarms = async () => {
+<<<<<<< HEAD
     // setIsLoading(true);
     // console.log("Fetching...");
     //   const toastId = toast.loading("Retrieving farms...");
+=======
+   // setIsLoading(true);
+    console.log("Fetching...");
+      
+>>>>>>> 3df91993c59d99f87f9a25b5922921f085c3c29c
     const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${userId}/farms`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
     
     const data = await response.json();
+<<<<<<< HEAD
     // if(data)
     //   toast.update(toastId, { render: "Farms Displayed", type: "success", isLoading: false, autoClose: 5000 });
     // else
     // toast.update(toastId, { render: "No farms uploaded", type: "error", isLoading: false, autoClose: 5000 });
+=======
+    
+>>>>>>> 3df91993c59d99f87f9a25b5922921f085c3c29c
 
     //setIsLoading(false);
     setFarms(data);
