@@ -83,29 +83,22 @@ const UserWidget = ({ userId }) => {
     doc.save('goat-farm-report.pdf');
   };
   const getFarms = async () => {
-<<<<<<< HEAD
+
     // setIsLoading(true);
     // console.log("Fetching...");
     //   const toastId = toast.loading("Retrieving farms...");
-=======
+
    // setIsLoading(true);
     console.log("Fetching...");
       
->>>>>>> 3df91993c59d99f87f9a25b5922921f085c3c29c
+
     const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${userId}/farms`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
     
     const data = await response.json();
-<<<<<<< HEAD
-    // if(data)
-    //   toast.update(toastId, { render: "Farms Displayed", type: "success", isLoading: false, autoClose: 5000 });
-    // else
-    // toast.update(toastId, { render: "No farms uploaded", type: "error", isLoading: false, autoClose: 5000 });
-=======
-    
->>>>>>> 3df91993c59d99f87f9a25b5922921f085c3c29c
+
 
     //setIsLoading(false);
     setFarms(data);
