@@ -83,6 +83,12 @@ const UserWidget = ({ userId }) => {
     doc.save('goat-farm-report.pdf');
   };
   const getFarms = async () => {
+
+
+    // setIsLoading(true);
+    // console.log("Fetching...");
+    //   const toastId = toast.loading("Retrieving farms...");
+
     const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${userId}/farms`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
