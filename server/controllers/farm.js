@@ -200,6 +200,7 @@ export const addfarm = async (req, res) => {
   
       res.json(counts);
     } catch (err) {
+      res.status(500).json({ error: 'Internal Server Error' });
       console.error('Error executing query:', err);
       throw err;
     }
@@ -273,7 +274,7 @@ WHERE farms.farm_id = $1;`;
       res.json("OK");
     } catch (error) {
       await client.query('ROLLBACK');
-      
+      res.status(500).json({ error: 'Internal Server Error' });
       console.error('Error deleting farm:', error);
     } 
   }

@@ -72,7 +72,7 @@ const MyPost = ({ userId, setaddFarm }) => {
 
   ]
   const thermal=[
-    { label: 'a) Ceiling fans present, fresh water available and well ventilation and good shady tree present in open area in summer. In winter well protected house by the cold wind, high watt bulb present.', value: '5' },
+    { label: 'a) Fresh water available and well ventilation and good shady tree present in open area in summer. In winter well protected house by the cold wind, high watt bulb present.', value: '5' },
     { label: 'b) Fresh water is present but absence of ceiling fans, ventilation is not proper in summer time. In winter no high watt bulb has covered area.', value: '3' },
     { label: 'c)Absence of all of the above.', value: '0' },
     
