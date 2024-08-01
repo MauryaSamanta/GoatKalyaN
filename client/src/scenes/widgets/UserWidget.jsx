@@ -89,7 +89,7 @@ const UserWidget = ({ userId }) => {
     // console.log("Fetching...");
     //   const toastId = toast.loading("Retrieving farms...");
 
-    const response = await fetch(`http://localhost:3001/farms/${userId}/farms`, {
+    const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${userId}/farms`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -108,7 +108,7 @@ const UserWidget = ({ userId }) => {
     setIsLoading(true);
     const toastId = toast.loading("Fetching Farm Details...");
     try {
-      const response = await fetch(`http://localhost:3001/farms/${farmid}`,{
+      const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${farmid}`,{
         method: "GET",
         headers: { "Content-Type": "application/json" }
       });
@@ -132,7 +132,7 @@ const UserWidget = ({ userId }) => {
     {setIsLoading(true);
     const toastId = toast.loading("Deleting Farm...");
     try {
-      const response=await fetch(`http://localhost:3001/farms/${farmid}`,{
+      const response=await fetch(`https://goatkalyan-backend.onrender.com/farms/${farmid}`,{
         method:"POST"
       });
       const data=await response.json();
