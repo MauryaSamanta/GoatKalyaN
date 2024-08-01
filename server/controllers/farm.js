@@ -21,6 +21,7 @@ export const addfarm = async (req, res) => {
         name_farmer,
         location_map_farm,
         farm_male,
+        castrated,
         farm_female,
         farm_young,
         latLng
@@ -40,7 +41,7 @@ export const addfarm = async (req, res) => {
       
      console.log(latLng);
       const client = await pool.connect();
-        const query = 'INSERT INTO farms (name_farm, name_farmer, location_farm, farm_male, farm_female, farm_young, user_id, created_at, location_map_farm) VALUES ($1, $2, $3,$4,$5,$6,$7,NOW(),$8) RETURNING *';
+        const query = 'INSERT INTO farms (name_farm, name_farmer, location_farm, farm_male, farm_female, farm_young, user_id, created_at, location_map_farm, castrated) VALUES ($1, $2, $3,$4,$5,$6,$7,NOW(),$8, $9) RETURNING *';
         const values = [
             name_farm,
             name_farmer,
@@ -49,7 +50,8 @@ export const addfarm = async (req, res) => {
             farm_female,
             farm_young,
             userid,
-            location_map_farm];
+            location_map_farm,
+            castrated];
         const result = await client.query(query, values);
         const farm_id=result.rows[0].farm_id;
         const query1='INSERT INTO housing (farm_id, floor, roof, bedding, thermal, watering,total,user_id) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *';

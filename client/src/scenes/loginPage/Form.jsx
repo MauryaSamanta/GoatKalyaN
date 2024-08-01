@@ -68,7 +68,7 @@ const Form = () => {
     //formData.append("picturePath", values.picture.name);
     //console.log("formData");
     const savedUserResponse = await fetch(
-      "https://goatkalyan-backend.onrender.com/auth/register",
+      "http://localhost:3001/auth/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -88,7 +88,7 @@ const Form = () => {
     console.log(JSON.stringify(values));
     setIsLoading(true);
       const toastId = toast.loading("Logging in...");
-    const loggedInResponse = await fetch("https://goatkalyan-backend.onrender.com/auth/login", {
+    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
