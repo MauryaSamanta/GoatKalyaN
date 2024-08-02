@@ -96,7 +96,7 @@ const MyPost = ({ userId, setaddFarm }) => {
 
   const supple=[
     
-    { label: ' Proper supplementary feed is provided twice a day as per body weight.', value: '5' },
+    { label: ' Proper supplementary feed is provided as per body weight.', value: '5' },
     { label: ' Proper supplementary feed is provided but not as per body weight.', value: '3' },
     { label: 'Supplementary feed is not given.', value: '0' },
   ]
