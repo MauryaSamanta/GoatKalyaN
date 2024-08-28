@@ -91,7 +91,7 @@ const MyPost = ({ userId, setaddFarm }) => {
   const grazing=[
     { label: ' 	 Grazing area consist of adequate fresh seasonal green grass. Recommended grazing area for animal maintain properly. Grazing time should be 6-8 hours.', value: '6' },
     { label: '	 Grazing area consist less fresh seasonal green grass. Recommended grazing area for animal is less. Grazing time is 4-6 hours.', value: '4' },
-    { label: ' Grazing area does not consist fresh seasonal green grass. Recommended grazing area is very less. Grazing time is less than 4 hours.', value: '3' },
+    { label: ' Grazing area does not consist fresh seasonal green grass. Recommended grazing area is very less. Grazing time is less than 4 hours.', value: '2' },
   ]
 
   const supple=[
