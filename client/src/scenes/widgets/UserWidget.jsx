@@ -183,7 +183,7 @@ const UserWidget = ({ userId }) => {
         <Typography variant="h6">Location in Coordinates: {selectedFarm.location_farm}</Typography>
         <Typography variant="h6">Address: {selectedFarm.location_map_farm}</Typography>
         <Typography variant="h6">Number of Male Animals: {selectedFarm.farm_male}</Typography>
-        {selectedFarm.castrated?(<Typography variant="h6">Number of Castrated Animals: {selectedFarm.farm_male}</Typography>):(<></>)}
+        {selectedFarm.castrated?(<Typography variant="h6">Number of Castrated Animals: {selectedFarm.castrated}</Typography>):(<></>)}
         <Typography variant="h6">Number of Female Animals: {selectedFarm.farm_female}</Typography>
         <Typography variant="h6">Number of Young (Either Sex, Below six months age): {selectedFarm.farm_young}</Typography>
         <Typography variant="h6">Created At: {new Date(selectedFarm.created_at).toLocaleString()}</Typography>
