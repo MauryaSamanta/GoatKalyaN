@@ -164,7 +164,7 @@ const UserWidget = ({ userId }) => {
     <Container>
       <ToastContainer />
     {selectedFarm ? (
-      <Paper id="pdf-content">
+      <Paper id="pdf-content" >
         <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', mt: 2 }}>
         
         <Button variant="contained" color="secondary" onClick={generatePDF} >

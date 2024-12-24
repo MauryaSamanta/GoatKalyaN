@@ -5,7 +5,7 @@ import multer from 'multer';
 import multerS3 from 'multer-s3';
 import path from 'path';
 import {S3Client, PutObjectCommand} from '@aws-sdk/client-s3';
-
+import ExcelJS from 'exceljs';
 
 const s3=new S3Client({});
 
@@ -279,4 +279,47 @@ WHERE farms.farm_id = $1;`;
       res.status(500).json({ error: 'Internal Server Error' });
       console.error('Error deleting farm:', error);
     } 
+  }
+
+  export const exportToExcel=async(req,res)=> {
+    const client = await pool.connect();
+     const {userid}=req.body;
+    // console.log(req.body);
+    try {
+      // Create a new workbook
+      const workbook = new ExcelJS.Workbook();
+      const worksheet = workbook.addWorksheet('Farm Data');
+  
+      // Query to get all farms and their associated data from the related tables
+      const farmQuery = `
+       SELECT 
+    farms.*, 
+    housing.*, 
+    housing.total AS housing_total, 
+    behaviour.*, 
+    behaviour.total AS behaviour_total, 
+    health.*, 
+    health.total AS health_total, 
+    fodder.*, 
+    fodder.total AS fodder_total, 
+    images.image_url AS image_url
+FROM farms 
+LEFT JOIN housing ON farms.farm_id = housing.farm_id
+LEFT JOIN behaviour ON farms.farm_id = behaviour.farm_id
+LEFT JOIN health ON farms.farm_id = health.farm_id
+LEFT JOIN fodder ON farms.farm_id = fodder.farm_id
+LEFT JOIN images ON farms.farm_id = images.farm_id
+WHERE farms.user_id = $1;
+      `;
+      const farmResult = await client.query(farmQuery, [userid]);
+  
+     
+      res.status(200).json(farmResult);
+     // return buffer; // Return the generated Excel file buffer
+    } catch (error) {
+      console.error('Error exporting data to Excel:', error);
+      throw error;
+    } finally {
+      client.release();
+    }
   }

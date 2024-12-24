@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "dotenv": "^16.4.5",
+    "exceljs": "^4.4.0",
     "face-api.js": "^0.22.2",
     "formik": "^2.2.9",
     "geolocation": "^0.2.0",
@@ -27,6 +28,7 @@
     "react-toastify": "^10.0.5",
     "redux-persist": "^6.0.0",
     "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5",
     "yup": "^0.32.11"
   },
   "scripts": {
