@@ -276,7 +276,7 @@ const MyPost = ({ userId, setaddFarm }) => {
   //   }
   console.log(JSON.stringify(values));
 
-    const savefarmresponse = await fetch("http://localhost:3001/farms", {
+    const savefarmresponse = await fetch("https://goatkalyan-backend.onrender.com/farms", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
