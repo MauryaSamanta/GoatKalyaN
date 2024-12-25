@@ -89,7 +89,7 @@ const UserWidget = ({ userId }) => {
     // console.log("Fetching...");
     //   const toastId = toast.loading("Retrieving farms...");
 
-    const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${userId}/farms`, {
+    const response = await fetch(`http://localhost:3001/farms/${userId}/farms`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -108,7 +108,7 @@ const UserWidget = ({ userId }) => {
     setIsLoading(true);
     const toastId = toast.loading("Fetching Farm Details...");
     try {
-      const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${farmid}`,{
+      const response = await fetch(`http://localhost:3001/farms/${farmid}`,{
         method: "GET",
         headers: { "Content-Type": "application/json" }
       });
@@ -132,7 +132,7 @@ const UserWidget = ({ userId }) => {
     {setIsLoading(true);
     const toastId = toast.loading("Deleting Farm...");
     try {
-      const response=await fetch(`https://goatkalyan-backend.onrender.com/farms/${farmid}`,{
+      const response=await fetch(`http://localhost:3001/farms/${farmid}`,{
         method:"POST"
       });
       const data=await response.json();
@@ -385,6 +385,7 @@ const UserWidget = ({ userId }) => {
               variant="contained"
               color="primary"
               onClick={() => fetchFarmDetails(farm.farm_id)}
+              sx={{fontSize:10, width:110}}
             >
               Get Details
             </Button>
@@ -392,6 +393,7 @@ const UserWidget = ({ userId }) => {
               variant="contained"
               color="secondary"
               onClick={() => deleteFarm(farm.farm_id)} // Define deleteFarm function
+              sx={{fontSize:10, width:110}}
             >
               Delete Farm
             </Button>

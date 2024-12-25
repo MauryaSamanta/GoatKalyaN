@@ -9,13 +9,15 @@ import AdvertWidget from "scenes/widgets/AdvertWidget";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
 import ExcelJS from 'exceljs';
 import * as XLSX from 'xlsx';
+import FilterIcon from '@mui/icons-material/FilterAlt'; // Example of an icon
+
 const HomePage = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const { userid  } = useSelector((state) => state.user);
   const[addFarm,setaddFarm]=useState(false);
   const  exportFarmData=async(userId) =>{
     const data={userid:userid};
-    const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/export/excel`, {
+    const response = await fetch(`http://localhost:3001/farms/export/excel`, {
       method: 'POST',
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(data)
@@ -43,6 +45,11 @@ const HomePage = () => {
 
           {!addFarm?(
             <Container>
+               <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb:-4 }}>
+               <Button variant="contained" sx={{backgroundColor:'#abb7b7', marginRight:5, borderRadius:25}} startIcon={<FilterIcon />}>
+              Filter
+            </Button>
+               </Box>
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
             <Button variant="contained" onClick={exportFarmData} sx={{marginRight:5, backgroundColor:'#1D6F42'}}>
               Export to Excel
