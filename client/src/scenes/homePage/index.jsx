@@ -45,12 +45,12 @@ const HomePage = () => {
 
           {!addFarm?(
             <Container>
-               <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb:-4 }}>
-               <Button variant="contained" sx={{backgroundColor:'#abb7b7', marginRight:5, borderRadius:25}} startIcon={<FilterIcon />}>
+               {/* <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}> */}
+               {/* <Button variant="contained" sx={{backgroundColor:'#abb7b7', marginRight:5, borderRadius:25}} startIcon={<FilterIcon />}>
               Filter
-            </Button>
-               </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+            </Button> */}
+               {/* </Box> */}
+            <Box sx={{ display: 'flex', justifyContent: !isNonMobileScreens?'center':'space-evenly', mb: 2 }}>
             <Button variant="contained" onClick={exportFarmData} sx={{marginRight:5, backgroundColor:'#1D6F42'}}>
               Export to Excel
             </Button>
