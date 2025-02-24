@@ -6,7 +6,8 @@ import {
   useMediaQuery,
   Typography,
   useTheme,
-  Container
+  Container,
+  CircularProgress
 } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
@@ -68,7 +69,7 @@ const Form = () => {
     //formData.append("picturePath", values.picture.name);
     //console.log("formData");
     const savedUserResponse = await fetch(
-      "https://goatkalyan-backend.onrender.com/auth/register",
+      "http://localhost:3001/auth/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -87,14 +88,14 @@ const Form = () => {
   const login = async (values, onSubmitProps) => {
     console.log(JSON.stringify(values));
     setIsLoading(true);
-      const toastId = toast.loading("Logging in...");
-    const loggedInResponse = await fetch("https://goatkalyan-backend.onrender.com/auth/login", {
+    //  const toastId = toast.loading("Logging in...");
+    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
     console.log("reached login");
-    toast.update(toastId, { render: "Logged in successfully", type: "success", isLoading: false, autoClose: 5000 });
+   // toast.update(toastId, { render: "Logged in successfully", type: "success", isLoading: false, autoClose: 5000 });
     const loggedIn = await loggedInResponse.json();
     onSubmitProps.resetForm();
     if (loggedIn) {
@@ -198,7 +199,7 @@ const Form = () => {
                 "&:hover": { color: palette.primary.main },
               }}
             >
-              {isLogin ? "LOGIN" : "REGISTER"}
+           {!isLoading?   (isLogin ? "LOGIN" : "REGISTER"):(<CircularProgress color="secondary"/>)}
             </Button>
             <Typography>
             Developed in Department of Livestock Production Management
@@ -220,7 +221,7 @@ const Form = () => {
                 },
               }}
             > 
-              {isLogin
+         {  isLogin
                 ? "Don't have an account? Sign Up here."
                 : "Already have an account? Login here."}
             </Typography>
