@@ -91,18 +91,18 @@ const UserWidget = ({ userId }) => {
 
     const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${userId}/farms`, {
       method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
+      
     });
     
     const data = await response.json();
-
     //setIsLoading(false);
     setFarms(data);
+    
   };
 
   useEffect(() => {
     getFarms();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [userId]); // eslint-disable-line react-hooks/exhaustive-deps
   const fetchFarmDetails = async (farmid) => {
     console.log(farmid);
     setIsLoading(true);

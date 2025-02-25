@@ -159,6 +159,7 @@ export const addfarm = async (req, res) => {
 
   export const getUserFarms=async(req,res)=>{
     const userid=parseInt(req.params.userid,10);
+    console.log(userid);
     try {
       const query = 'SELECT * FROM farms WHERE user_id = $1';
       const { rows } = await pool.query(query, [userid]);
