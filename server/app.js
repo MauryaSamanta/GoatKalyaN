@@ -69,7 +69,6 @@ app.use("/farms",farmRoutes);
 //   storage:storage
 // });
 
-app.post("/farms",upload.single('images'), addfarm);
 
 app.get('/users', async (req, res) => {
     try {
