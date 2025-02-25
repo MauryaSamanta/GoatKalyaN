@@ -68,36 +68,7 @@ app.use("/farms",farmRoutes);
 // const upload=multer({
 //   storage:storage
 // });
-const region=process.env.AWS_REGION;
 
-const accesKeyId=process.env.AWS_ACCESS_KEY_ID;
-const secretAccessKey=process.env.AWS_SECRET_ACCESS_KEY;
-const storage=multer.memoryStorage();
-const upload=multer({storage:storage});
-const s3=new S3Client({region:'eu-north-1',
-  credentials:{
-    accessKeyId:'AKIAXYKJTKHBHTZFPUOD',
-    secretAccessKey:'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'
-  }
-});
-app.post("/abcd", upload.single('images'), async(req,res)=>{
- console.log(req.file);
- try {
-  const params={
-    Bucket:'goatkalyan',
-    Key: req.file.originalname,
-    Body:req.file.buffer,
-    ContentType:req.file.mimetype,
-  
-   }
-    const command=new PutObjectCommand(params);
-    const value=await s3.send(command);
-    console.log(value);
- } catch (error) {
-   console.log(error);
- }
- 
-})
 app.post("/farms",upload.single('images'), addfarm);
 
 app.get('/users', async (req, res) => {
