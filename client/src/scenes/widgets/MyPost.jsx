@@ -294,6 +294,7 @@ const MyPost = ({ userId, setaddFarm }) => {
       >
         {({ isSubmitting, values, handleChange, setFieldValue, value }) => (
           <Form style={{width:'100%'}}>
+            <Typography sx={{color:'red'}}>All fields are mandatory</Typography>
             <Grid container spacing={2} style={{width:'100%', margin:0}}>
               <Grid item xs={12}>
                 <Field
@@ -331,20 +332,21 @@ const MyPost = ({ userId, setaddFarm }) => {
                   helperText={<ErrorMessage name="location_map_farm" />}
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12}>
                 <Field
                   name="farm_male"
                   as={TextField}
                   type="number"
                   label="Number of Male Animals"
                   fullWidth
+                  
                   variant="outlined"
                   value={values.farm_male}
                  // onChange={() => {setFieldValue('farm_male',values.farm_male);}}
                   helperText={<ErrorMessage name="farm_male" />}
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12}>
                 <Field
                   name="castrated"
                   as={TextField}
@@ -357,7 +359,7 @@ const MyPost = ({ userId, setaddFarm }) => {
                   helperText={<ErrorMessage name="farm_male" />}
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12}>
                 <Field
                   name="farm_female"
                   as={TextField}
@@ -370,7 +372,7 @@ const MyPost = ({ userId, setaddFarm }) => {
                   helperText={<ErrorMessage name="farm_female" />}
                 />
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12}>
                 <Field
                   name="farm_young"
                   as={TextField}

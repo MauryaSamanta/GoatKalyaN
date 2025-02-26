@@ -48,7 +48,7 @@ const UserWidget = ({ userId }) => {
     doc.text(`Name of the Farmer: ${selectedFarm.name_farmer}`, 14, 56);
     doc.text(`Location of the Farm: ${selectedFarm.location_map_farm}`, 14, 62);
     doc.text(`Coordinates: ${selectedFarm.location_farm}`, 14, 68);
-    doc.text(`Recorded On:${new Date(selectedFarm.created_at).toLocaleString()}`, 14, 74);
+    doc.text(`Recorded On:${new Date(selectedFarm.createdAt).toLocaleString()}`, 14, 74);
     
     var rank="";
     var total=selectedFarm.housing_total+selectedFarm.fodder_total+selectedFarm.behaviour_total+selectedFarm.health_total;
@@ -168,7 +168,7 @@ const UserWidget = ({ userId }) => {
         <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', mt: 2 }}>
         
         <Button variant="contained" color="secondary" onClick={generatePDF} >
-              Download PDF 
+              Download Report
             </Button>
             <Button variant="contained" color="primary" onClick={() => setSelectedFarm(null)}>
           Back to Farms
