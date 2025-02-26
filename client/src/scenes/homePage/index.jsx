@@ -17,7 +17,7 @@ const HomePage = () => {
   const[addFarm,setaddFarm]=useState(false);
   const  exportFarmData=async(userId) =>{
     const data={userid:userid};
-    const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/export/excel`, {
+    const response = await fetch(`https://farmlinkbackend.onrender.com/farms/export/excel`, {
       method: 'POST',
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(data)
@@ -26,7 +26,7 @@ const HomePage = () => {
     const returneddata=await response.json();
     console.log(returneddata);
     var wb=XLSX.utils.book_new(),
-     ws=XLSX.utils.json_to_sheet(returneddata.rows);
+     ws=XLSX.utils.json_to_sheet(returneddata);
      XLSX.utils.book_append_sheet(wb,ws,'Farm_Data');
      XLSX.writeFile(wb, 'goatkalyan.xlsx');
   

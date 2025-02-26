@@ -69,7 +69,7 @@ const Form = () => {
     //formData.append("picturePath", values.picture.name);
     //console.log("formData");
     const savedUserResponse = await fetch(
-      "http://localhost:3001/auth/register",
+      "http://localhost:5000/auth/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -89,7 +89,7 @@ const Form = () => {
     console.log(JSON.stringify(values));
     setIsLoading(true);
     //  const toastId = toast.loading("Logging in...");
-    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
+    const loggedInResponse = await fetch("http://localhost:5000/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),

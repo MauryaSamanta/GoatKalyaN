@@ -133,23 +133,7 @@ export const addfarm = async (req, res) => {
           userid
         ];
         const result4=await client.query(query4,values4);
-        // const params={
-        //   Bucket:'goatkalyan',
-        //   Key: req.file.originalname,
-        //   Body:req.file.buffer,
-        //   ContentType:req.file.mimetype,
-        //   ACL:'public-read'
-        //  }
-        //   const command=new PutObjectCommand(params);
-        //   await s3.send(command);
-        //   const s3Url = `https://${params.Bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${params.Key}`;
-        //   const query5 = `
-        //   INSERT INTO images (farm_id, image_url, user_id)
-        //   VALUES ($1, $2, $3)
-        //   RETURNING *;
-        // `;
-        // const values5 = [farm_id, s3Url, userid];
-        // const result5 = await pool.query(query5, values5);
+        
 
       res.status(201).json(result.rows[0]);
     } catch (err) {
@@ -214,22 +198,7 @@ export const addfarm = async (req, res) => {
     const client = await pool.connect();
       
     try {
-    //   const query = `
-    //   SELECT 
-    //     farms.*, 
-    //     housing.*, 
-    //     behaviour.*, 
-    //     health.*, 
-    //     fodder.*, 
-    //     images.image_url AS image_url
-    //   FROM farms 
-    //   LEFT JOIN housing ON farms.farm_id = housing.farm_id
-    //   LEFT JOIN behaviour ON farms.farm_id = behaviour.farm_id
-    //   LEFT JOIN health ON farms.farm_id = health.farm_id
-    //   LEFT JOIN fodder ON farms.farm_id = fodder.farm_id
-    //   LEFT JOIN images ON farms.farm_id = images.farm_id
-    //   WHERE farms.farm_id = $1
-    // `;
+    
     const query=`SELECT 
     farms.*, 
     housing.*, 

@@ -89,7 +89,7 @@ const UserWidget = ({ userId }) => {
     // console.log("Fetching...");
     //   const toastId = toast.loading("Retrieving farms...");
 
-    const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${userId}/farms`, {
+    const response = await fetch(`https://farmlinkbackend.onrender.com/farms/${userId}/farms`, {
       method: "GET",
       
     });
@@ -108,7 +108,7 @@ const UserWidget = ({ userId }) => {
     setIsLoading(true);
     const toastId = toast.loading("Fetching Farm Details...");
     try {
-      const response = await fetch(`https://goatkalyan-backend.onrender.com/farms/${farmid}`,{
+      const response = await fetch(`https://farmlinkbackend.onrender.com/farms/${farmid}`,{
         method: "GET",
         headers: { "Content-Type": "application/json" }
       });
@@ -132,7 +132,7 @@ const UserWidget = ({ userId }) => {
     {setIsLoading(true);
     const toastId = toast.loading("Deleting Farm...");
     try {
-      const response=await fetch(`https://goatkalyan-backend.onrender.com/farms/${farmid}`,{
+      const response=await fetch(`https://farmlinkbackend.onrender.com/farms/${farmid}`,{
         method:"POST"
       });
       const data=await response.json();
@@ -186,7 +186,7 @@ const UserWidget = ({ userId }) => {
         {selectedFarm.castrated?(<Typography variant="h6">Number of Castrated Animals: {selectedFarm.castrated}</Typography>):(<></>)}
         <Typography variant="h6">Number of Female Animals: {selectedFarm.farm_female}</Typography>
         <Typography variant="h6">Number of Young (Either Sex, Below six months age): {selectedFarm.farm_young}</Typography>
-        <Typography variant="h6">Created At: {new Date(selectedFarm.created_at).toLocaleString()}</Typography>
+        <Typography variant="h6">Created At: {new Date(selectedFarm.createdAt).toLocaleString()}</Typography>
         <Grid container spacing={4}>
         <Grid item xs={15}>
         <TableContainer component={Paper}>
@@ -355,7 +355,7 @@ const UserWidget = ({ userId }) => {
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell>Farm ID</TableCell>
+          
           <TableCell>Farm Name</TableCell>
           <TableCell>Farmer Name</TableCell>
           <TableCell>Coordinates of Farm</TableCell>
@@ -371,7 +371,7 @@ const UserWidget = ({ userId }) => {
       <TableBody>
         {farms.map((farm) => (
           <TableRow key={farm.farm_id}>
-            <TableCell>{farm.farm_id}</TableCell>
+           
             <TableCell>{farm.name_farm}</TableCell>
             <TableCell>{farm.name_farmer}</TableCell>
             <TableCell>{farm.location_farm}</TableCell>
@@ -379,7 +379,7 @@ const UserWidget = ({ userId }) => {
             <TableCell>{farm.farm_female}</TableCell>
             <TableCell>{farm.farm_young}</TableCell>
             <TableCell>{farm.location_map_farm}</TableCell>
-            <TableCell>{new Date(farm.created_at).toLocaleString()}</TableCell>
+            <TableCell>{new Date(farm.createdAt).toLocaleString()}</TableCell>
             <TableCell><Box sx={{ display: 'flex', gap: 1 }}>
             <Button
               variant="contained"

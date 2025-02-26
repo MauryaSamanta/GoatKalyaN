@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Box, Button, Checkbox, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Box, Button, Checkbox, CircularProgress, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material';
 
 const MyPost = ({ userId, setaddFarm }) => {
   // Define the initial values for the form
@@ -261,26 +261,20 @@ const MyPost = ({ userId, setaddFarm }) => {
   useEffect(() => {
     getCoordinates();
   }, []); 
+  const [saving,setsaving]=useState(false);
   const onSubmit = async (values, { setSubmitting }) => {
    // console.log("Hello");
    values.userid=userId;
    values.latLng=loc;
-  //  const formData = new FormData();
-  //  formData.append("userid", userId);
-  //  for (let value in values) {
-  //   formData.append(value, values[value]);
-  // }
-    
-  //   for (let [key, value] of formData.entries()) {
-  //     console.log(key, value);
-  //   }
-  console.log(JSON.stringify(values));
-
-    const savefarmresponse = await fetch("https://goatkalyan-backend.onrender.com/farms", {
+ 
+ // console.log(JSON.stringify(values));
+   setsaving(true);
+    const savefarmresponse = await fetch("https://farmlinkbackend.onrender.com/farms", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
+    setsaving(false);
     const saved = await savefarmresponse.json();
     setSubmitting(false);
     setaddFarm(false);
@@ -972,7 +966,7 @@ const MyPost = ({ userId, setaddFarm }) => {
               </Grid>
               <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                 SUBMIT
+                 {!saving?"SUBMIT":<CircularProgress color='secondary'/>}
                 </Button>
                 <Button variant="outlined" color="secondary" onClick={()=>setaddFarm(false)}>
                   CANCEL
