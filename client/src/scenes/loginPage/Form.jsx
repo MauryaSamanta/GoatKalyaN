@@ -69,7 +69,7 @@ const Form = () => {
     //formData.append("picturePath", values.picture.name);
     //console.log("formData");
     const savedUserResponse = await fetch(
-      "http://localhost:5000/auth/register",
+      "https://farmlinkbackend.onrender.com/auth/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -86,10 +86,10 @@ const Form = () => {
   };
 
   const login = async (values, onSubmitProps) => {
-    console.log(JSON.stringify(values))
+ 
     setIsLoading(true);
     //  const toastId = toast.loading("Logging in...");
-    const loggedInResponse = await fetch("http://localhost:5000/auth/login", {
+    const loggedInResponse = await fetch("https://farmlinkbackend.onrender.com/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
